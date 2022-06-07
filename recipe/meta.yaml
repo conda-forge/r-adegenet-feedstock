@@ -1,4 +1,4 @@
-{% set version = "2.1.6" %}
+{% set version = "2.1.7" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/adegenet_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/adegenet/adegenet_{{ version }}.tar.gz
-  sha256: 7823de4933634cb887481fe4b12cf2faacbaa1b4b66939584d10fcb7ce2da26b
+  sha256: 096699e8a98fdb9478bf51e99bc877f3c3a859b74889fd87268b39c013ef6b7e
 
 build:
   merge_build_host: true  # [win]
