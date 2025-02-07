@@ -1,4 +1,4 @@
-{% set version = "2.1.10" %}
+{% set version = "2.1.11" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/adegenet_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/adegenet/adegenet_{{ version }}.tar.gz
-  sha256: ab62780ac1dd575d01f3e0869b34728a74b2ca2eaeeccb2f520007e9a578b163
+  sha256: ec8add4d72caa04865605db6d3734db0760805187c7073033bc4e648b6cf6271
 
 build:
-  number: 2
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
