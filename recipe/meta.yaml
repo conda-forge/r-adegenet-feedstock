@@ -12,22 +12,39 @@ source:
   sha256: ec8add4d72caa04865605db6d3734db0760805187c7073033bc4e648b6cf6271
 
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
-    - {{ compiler('c') }}              # [not win]
-    - {{ stdlib("c") }}                # [not win]
-    - {{ compiler('m2w64_c') }}        # [win]
-    - {{ stdlib("m2w64_c") }}          # [win]
-    - {{ posix }}filesystem        # [win]
+    - cross-r-base {{ r_base }}  # [build_platform != target_platform]
+    - r-mass                     # [build_platform != target_platform]
+    - r-ade4                     # [build_platform != target_platform]
+    - r-ape                      # [build_platform != target_platform]
+    - r-boot                     # [build_platform != target_platform]
+    - r-dplyr >=0.4.1            # [build_platform != target_platform]
+    - r-ggplot2                  # [build_platform != target_platform]
+    - r-igraph                   # [build_platform != target_platform]
+    - r-reshape2                 # [build_platform != target_platform]
+    - r-seqinr                   # [build_platform != target_platform]
+    - r-shiny                    # [build_platform != target_platform]
+    - r-spdep                    # [build_platform != target_platform]
+    - r-vegan                    # [build_platform != target_platform]
+    - {{ compiler('c') }}        # [not win]
+    - {{ stdlib("c") }}          # [not win]
+    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ stdlib("m2w64_c") }}    # [win]
+    - {{ posix }}filesystem      # [win]
     - {{ posix }}make
-    - {{ posix }}sed               # [win]
-    - {{ posix }}coreutils         # [win]
-    - {{ posix }}zip               # [win]
+    - {{ posix }}sed             # [win]
+    - {{ posix }}coreutils       # [win]
+    - {{ posix }}zip             # [win]
   host:
     - r-base
     - r-mass
@@ -70,6 +87,7 @@ about:
   license_family: GPL3
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
